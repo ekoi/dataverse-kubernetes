@@ -117,10 +117,7 @@ done
 # 4. Stop the domain again (will be started in foreground later)
 asadmin stop-domain
 
-# 5. Symlink the WAR file to autodeploy on real start
-ln -s ${HOME_DIR}/dvinstall/dataverse.war ${DOMAIN_DIR}/autodeploy/dataverse.war
-
-# 6. Symlink the jHove configuration
-ln -s ${HOME_DIR}/dvinstall/jhove.conf ${DOMAIN_DIR}/config/jhove.conf
-ln -s ${HOME_DIR}/dvinstall/jhoveConfig.xsd ${DOMAIN_DIR}/config/jhoveConfig.xsd
-sed -i ${DOMAIN_DIR}/config/jhove.conf -e "s:/usr/local/glassfish4/glassfish/domains/domain1:${DOMAIN_DIR}:g"
+# 5. Symlink the jHove configuration
+ln -s ${HOME_DIR}/dvinstall/jhove.conf ${PAYARA_DIR}/glassfish/domains/${DOMAIN_NAME}/config/jhove.conf
+ln -s ${HOME_DIR}/dvinstall/jhoveConfig.xsd ${PAYARA_DIR}/glassfish/domains/${DOMAIN_NAME}/config/jhoveConfig.xsd
+sed -i ${PAYARA_DIR}/glassfish/domains/${DOMAIN_NAME}/config/jhove.conf -e "s:/usr/local/glassfish4/glassfish/domains/domain1:${PAYARA_DIR}/glassfish/domains/${DOMAIN_NAME}:g"
