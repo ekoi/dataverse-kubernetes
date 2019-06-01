@@ -14,15 +14,18 @@ set -e
 # Include some sane defaults
 . ${SCRIPT_DIR}/default.config
 
+# Payara upstream images uses username/password login
+ASADMIN_OPTS="--user=${ADMIN_USER} --passwordfile=${PASSWORD_FILE}"
+
 # 0. Start the domain
-asadmin start-domain
+asadmin ${ASADMIN_OPTS} start-domain
 
 # 1. Password aliases from secrets
 for alias in rserve doi db
 do
   if [ -f ${SECRETS_DIR}/$alias/password ]; then
     cat ${SECRETS_DIR}/$alias/password | sed -e "s#^#AS_ADMIN_ALIASPASSWORD=#" > /tmp/$alias
-    asadmin $ASADMIN_OPTS create-password-alias --passwordfile /tmp/$alias ${alias}_password_alias
+    asadmin ${ASADMIN_OPTS} create-password-alias --passwordfile /tmp/$alias ${alias}_password_alias
     rm /tmp/$alias
   else
     echo "WARNING: Could not find 'password' secret for ${alias} in ${SECRETS_DIR}. Check your Kubernetes Secrets and their mounting!"
@@ -46,8 +49,8 @@ fi
 
 # JMS
 echo "Creating JMS resources."
-asadmin delete-connector-connection-pool --cascade=true jms/__defaultConnectionFactory-Connection-Pool
-asadmin create-connector-connection-pool \
+asadmin ${ASADMIN_OPTS} delete-connector-connection-pool --cascade=true jms/__defaultConnectionFactory-Connection-Pool
+asadmin ${ASADMIN_OPTS} create-connector-connection-pool \
           --steadypoolsize 1 \
           --maxpoolsize 250 \
           --poolresize 2 \
@@ -55,11 +58,11 @@ asadmin create-connector-connection-pool \
           --raname jmsra \
           --connectiondefinition javax.jms.QueueConnectionFactory \
           jms/IngestQueueConnectionFactoryPool
-asadmin create-connector-resource \
+asadmin ${ASADMIN_OPTS} create-connector-resource \
           --poolname jms/IngestQueueConnectionFactoryPool \
           --description "ingest connector resource" \
           jms/IngestQueueConnectionFactory
-asadmin create-admin-object \
+asadmin ${ASADMIN_OPTS} create-admin-object \
           --restype javax.jms.Queue \
           --raname jmsra \
           --description "sample administered object" \
@@ -68,17 +71,17 @@ asadmin create-admin-object \
 
 # JDBC
 echo "Creating JDBC resources."
-asadmin create-jdbc-connection-pool \
+asadmin ${ASADMIN_OPTS} create-jdbc-connection-pool \
           --restype javax.sql.DataSource \
           --datasourceclassname org.postgresql.ds.PGPoolingDataSource \
           --property create=true:User=${POSTGRES_USER}:PortNumber=${POSTGRES_PORT}:databaseName=${POSTGRES_DATABASE}:ServerName=${POSTGRES_SERVER} \
           dvnDbPool
-asadmin set resources.jdbc-connection-pool.dvnDbPool.property.password='${ALIAS=db_password_alias}'
-asadmin create-jdbc-resource --connectionpoolid dvnDbPool jdbc/VDCNetDS
+asadmin ${ASADMIN_OPTS} set resources.jdbc-connection-pool.dvnDbPool.property.password='${ALIAS=db_password_alias}'
+asadmin ${ASADMIN_OPTS} create-jdbc-resource --connectionpoolid dvnDbPool jdbc/VDCNetDS
 
 # JavaMail
 echo "Configuring JavaMail."
-asadmin create-javamail-resource \
+asadmin ${ASADMIN_OPTS} create-javamail-resource \
           --mailhost "${MAIL_SERVER}" \
           --mailuser "dataversenotify" \
           --fromaddress "do-not-reply@${HOST_DNS_ADDRESS}" \
@@ -86,15 +89,15 @@ asadmin create-javamail-resource \
 
 echo "Setting miscellaneous configuration options."
 # Timer data source
-asadmin set configs.config.server-config.ejb-container.ejb-timer-service.timer-datasource=jdbc/VDCNetDS
+asadmin ${ASADMIN_OPTS} set configs.config.server-config.ejb-container.ejb-timer-service.timer-datasource=jdbc/VDCNetDS
 # AJP connector
-asadmin create-network-listener --protocol http-listener-1 --listenerport 8009 --jkenabled true jk-connector
+asadmin ${ASADMIN_OPTS} create-network-listener --protocol http-listener-1 --listenerport 8009 --jkenabled true jk-connector
 # Disable logging for grizzly SSL problems
-asadmin set-log-levels org.glassfish.grizzly.http.server.util.RequestUtils=SEVERE
+asadmin ${ASADMIN_OPTS} set-log-levels org.glassfish.grizzly.http.server.util.RequestUtils=SEVERE
 # COMET support
-asadmin set server-config.network-config.protocols.protocol.http-listener-1.http.comet-support-enabled="true"
+asadmin ${ASADMIN_OPTS} set server-config.network-config.protocols.protocol.http-listener-1.http.comet-support-enabled="true"
 # SAX parser options
-asadmin create-jvm-options "\-Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl"
+asadmin ${ASADMIN_OPTS} create-jvm-options "\-Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl"
 
 # 3. Domain based configuration options
 # Set Dataverse environment variables
@@ -110,12 +113,12 @@ env -0 | grep -z -Ee "^(dataverse|doi)_" | while IFS='=' read -r -d '' k v; do
     v=`echo "${v}" | sed -e 's/:/\\\:/g'`
 
     echo "Handling ${KEY}=${v}."
-    asadmin delete-jvm-options "-D${KEY}"
-    asadmin create-jvm-options "-D${KEY}=${v}"
+    asadmin ${ASADMIN_OPTS} delete-jvm-options "-D${KEY}"
+    asadmin ${ASADMIN_OPTS} create-jvm-options "-D${KEY}=${v}"
 done
 
 # 4. Stop the domain again (will be started in foreground later)
-asadmin stop-domain
+asadmin ${ASADMIN_OPTS} stop-domain
 
 # 5. Symlink the jHove configuration
 ln -s ${HOME_DIR}/dvinstall/jhove.conf ${PAYARA_DIR}/glassfish/domains/${DOMAIN_NAME}/config/jhove.conf
