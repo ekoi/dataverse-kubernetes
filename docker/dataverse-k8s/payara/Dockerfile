@@ -26,6 +26,7 @@ RUN apt-get -qq update && \
     apt-get -qqy install postgresql-client jq imagemagick
 
 # Install PostgreSQL JDBC driver in AppServer
+# TODO: remove this once upstream includes the Postgres Client lib in the WAR.
 USER payara
 RUN wget --no-verbose -O postgresql.jar ${PGDRIVER_PKG} && \
     mv postgresql.jar ${PAYARA_DIR}/glassfish/lib
