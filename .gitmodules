@@ -1,0 +1,4 @@
+[submodule "dataverse"]
+	path = dataverse
+	url = https://github.com/poikilotherm/dataverse
+	branch = 4172-payara5
