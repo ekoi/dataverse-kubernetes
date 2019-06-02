@@ -45,11 +45,11 @@ RUN wget --no-verbose -O postgresql.jar ${PGDRIVER_PKG} && \
 RUN mkdir ${HOME_DIR}/dvinstall && \
     ln -s ${HOME_DIR}/dvinstall/dataverse.war ${DEPLOY_DIR}/dataverse.war
 # Copy files for the application
-COPY --from=builder /target/dataverse-*.war ${HOME_DIR}/dvinstall/dataverse.war
-COPY dataverse/scripts/api/data ${HOME_DIR}/dvinstall/data
-COPY dataverse/scripts/api/*.sh ${HOME_DIR}/dvinstall/
-COPY dataverse/scripts/database/reference_data.sql ${HOME_DIR}/dvinstall/
-COPY dataverse/conf/jhove/* ${HOME_DIR}/dvinstall/
+COPY --chown=payara:payara --from=builder /target/dataverse-*.war ${HOME_DIR}/dvinstall/dataverse.war
+COPY --chown=payara:payara dataverse/scripts/api/data ${HOME_DIR}/dvinstall/data
+COPY --chown=payara:payara dataverse/scripts/api/*.sh ${HOME_DIR}/dvinstall/
+COPY --chown=payara:payara dataverse/scripts/database/reference_data.sql ${HOME_DIR}/dvinstall/
+COPY --chown=payara:payara dataverse/conf/jhove/* ${HOME_DIR}/dvinstall/
 
 # Copy across docker scripts
 COPY --chown=payara:payara docker/dataverse-k8s/bin/*.sh docker/dataverse-k8s/bin/default.config docker/dataverse-k8s/payara/bin/*.sh ${SCRIPT_DIR}/
