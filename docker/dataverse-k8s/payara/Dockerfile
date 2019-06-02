@@ -37,5 +37,5 @@ RUN wget --no-verbose -O dvinstall.zip ${DATAVERSE_PKG} && \
     ln -s ${HOME_DIR}/dvinstall/dataverse.war ${DEPLOY_DIR}/dataverse.war
 
 # Copy across docker scripts
-COPY --chown=payara:payara bin/*.sh bin/default.config ${SCRIPT_DIR}/
+COPY --chown=payara:payara bin/*.sh bin/default.config payara/bin/*.sh ${SCRIPT_DIR}/
 RUN chmod +x ${SCRIPT_DIR}/*
