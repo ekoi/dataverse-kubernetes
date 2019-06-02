@@ -1,0 +1,11 @@
+---
+bases:
+  - ../../dataverse
+  - ../../solr
+  - ../../utils/postgresql
+
+resources:
+  - demo-secrets.yaml
+
+patches:
+  - patch-payara-image.yaml
