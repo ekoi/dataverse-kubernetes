@@ -1,0 +1,20 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ddi-converter-tool
+  labels:
+    app.kubernetes.io/name: ddi-converter-tool
+    app.kubernetes.io/version: "1.0"
+    app.kubernetes.io/component: service
+    app.kubernetes.io/part-of: dataverse
+    app.kubernetes.io/managed-by: kubectl
+spec:
+  ports:
+    - port: 8520
+      name: ddi-converter-tool
+      targetPort: 8520
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: ddi-converter-tool
+    app.kubernetes.io/part-of: dataverse
