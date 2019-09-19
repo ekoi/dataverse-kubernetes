@@ -19,6 +19,10 @@ spec:
       name: dataverse-ajp
       targetPort: 8009
       protocol: TCP
+    - port: 4848
+      name: dataverse-glassfish
+      targetPort: 4848
+      protocol: TCP
   selector:
     app.kubernetes.io/name: dataverse
     app.kubernetes.io/part-of: dataverse
