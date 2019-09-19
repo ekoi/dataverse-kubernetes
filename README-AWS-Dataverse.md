@@ -1,12 +1,12 @@
-##Setup Dataverse Infrastructure on Amazon Elastic Container Service for Kubernetes (EKS)
+## Setup Dataverse Infrastructure on Amazon Elastic Container Service for Kubernetes (EKS)
 
 In this topic, we create Dataverse infrastructure on Amazon EKS cluster.
 We registered dataverse.tk domain name. Register at [freenom](https://freenom.com) and search for your preferred domain then buy it for free.<br/>
 With [freenom](https://freenom.com) we can plenty of free domains such as .tk , .cf , .ml , .ga, .gq without the need of any credit card or financial information.
    
-###Prerequisites
+### Prerequisites
 Before setting up the Dataverse kubernetes cluster, we’ll need an [AWS account](https://aws.amazon.com/account/).
-###Installing AWS CLI
+### Installing AWS CLI
 First we need an installation of the [AWS Command Line Interface](https://aws.amazon.com/cli/).<br/>
 AWS CLI requires Python 2.6.5 or higher. Installation using pip.
 ```commandline
@@ -24,7 +24,7 @@ Default output format [None]:
 The instruction to get access key ID an secret access key can be found on [AWS - Managing Access Keys for IAM Users - Managing Access Keys (Console)
 ](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html?icmpid=docs_iam_console#Using_CreateAccessKey).
 The region 
-###Installing Kubernetes Operations(KOPS) and Kubectl
+### Installing Kubernetes Operations(KOPS) and Kubectl
 On Mac OS X, we’ll use brew to install. 
 ```commandline
 $brew update && brew install kops kubectl
@@ -60,7 +60,7 @@ Let’s enable versioning to revert or recover a previous state store.
 ```commandline
 aws s3api put-bucket-versioning --bucket dans-dataverse-state-store  --versioning-configuration Status=Enabled
 ```
-###Creating the cluster
+### Creating the cluster
 AWS is now as ready as it can be, to generate the cluster configuration using the following command:
 ```commandline
 kops create cluster --node-count 1 --master-size t2.small --master-volume-size 10 --node-size t2.small --node-volume-size 10 --zones eu-central-1a
@@ -99,7 +99,7 @@ Now when we check our instances on AWS, we would see three new instances that wo
 Our s3 bucket will now have some folder in it, which is basically our cluster configuration file.
 ![s3-folders](readme-imgs/s3-folders.png "s3-folders")
 
-###Deploying Dataverse, ddi-converter-tool and filepreviewers to cluster
+### Deploying Dataverse, ddi-converter-tool and filepreviewers to cluster
 Clone this project:
 
         git clone https://github.com/ekoi/dataverse-kubernetes.git
@@ -117,7 +117,7 @@ Deploy ddi-converter-tool:
     
         kubectl apply -k k8s/ddi-converter-tool
         
-###Expose Kubernetes services on dataverse.tk
+### Expose Kubernetes services on dataverse.tk
 Some of the following steps will be done manually on AWS Route 53. 
 
 On AWS Route 53, create hosted zone with domain name: dataverse.tk
@@ -149,13 +149,13 @@ Confirm that the service has external ip.
  
 Now, the http://dans.dataverse.tk should be accessible from the browser.
      
-###Automate Let’s Encrypt ssl certification
+### Automate Let’s Encrypt ssl certification
 Installing _helm_ using brew:
         
         brew install kubernetes-helm
 
 
 
-###Kubernetes Dashboard
+### Kubernetes Dashboard
 
-###Setting Up Jenkins                
+### Setting Up Jenkins                

@@ -5,6 +5,10 @@ metadata:
   name: postgresql
 spec:
   storageClassName: gp2
+  accessModes: [ "ReadWriteOnce" ]
+  resources:
+    requests:
+      storage: 1Gi
   selector:
 ---
 kind: PersistentVolumeClaim
@@ -13,6 +17,10 @@ metadata:
   name: dataverse-files
 spec:
   storageClassName: gp2
+  accessModes: [ "ReadWriteOnce" ]
+  resources:
+    requests:
+      storage: 5Gi
   selector:
 ---
 kind: PersistentVolumeClaim
@@ -21,4 +29,8 @@ metadata:
   name: solr
 spec:
   storageClassName: gp2
+  accessModes: [ "ReadWriteOnce" ]
+  resources:
+    requests:
+      storage: 1Gi
   selector:
