@@ -2,33 +2,33 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: fileviewer
+  name: filepreviewers
   labels:
-    app.kubernetes.io/name: fileviewer
+    app.kubernetes.io/name: filepreviewers
     app.kubernetes.io/version: "4.15.1"
-    app.kubernetes.io/component: fileviewer
+    app.kubernetes.io/component: filepreviewers
     app.kubernetes.io/part-of: dataverse
     app.kubernetes.io/managed-by: kubectl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: fileviewer
+      app.kubernetes.io/name: filepreviewers
       app.kubernetes.io/part-of: dataverse
   revisionHistoryLimit: 1
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: fileviewer
+        app.kubernetes.io/name: filepreviewers
         app.kubernetes.io/part-of: dataverse
     spec:
       containers:
-        - name: fileviewer
-          image: sshoc/fileviewer:0.1.2.3
+        - name: filepreviewers
+          image: ekoindarto/filepreviewers:0.6.0
 #          imagePullPolicy: Never
           ports:
-            - containerPort: 80
+            - containerPort: 8566
           env:
-            - name: FILEVIEWER_PORT  # Otherwise, this is wrongfully set by K8s.
-              value: "80"
+            - name: FILEPREVIEWERS_PORT  # Otherwise, this is wrongfully set by K8s.
+              value: "8566"
 

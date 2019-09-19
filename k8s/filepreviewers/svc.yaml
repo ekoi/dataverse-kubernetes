@@ -2,19 +2,19 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: fileviewer
+  name: filepreviewers
   labels:
-    app.kubernetes.io/name: fileviewer
+    app.kubernetes.io/name: filepreviewers
     app.kubernetes.io/version: "1.0"
     app.kubernetes.io/component: service
     app.kubernetes.io/part-of: dataverse
     app.kubernetes.io/managed-by: kubectl
 spec:
   ports:
-    - port: 80
-      name: fileviewer
-      targetPort: 80
+    - port: 8566
+      name: filepreviewers
+      targetPort: 8566
       protocol: TCP
   selector:
-    app.kubernetes.io/name: fileviewer
+    app.kubernetes.io/name: filepreviewers
     app.kubernetes.io/part-of: dataverse

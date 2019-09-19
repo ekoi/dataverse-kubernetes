@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: ddi-converter-tool
     app.kubernetes.io/version: "4.15.1"
-    app.kubernetes.io/component: fileviewer
+    app.kubernetes.io/component: ddi-converter-tool
     app.kubernetes.io/part-of: dataverse
     app.kubernetes.io/managed-by: kubectl
 spec:
@@ -24,11 +24,11 @@ spec:
     spec:
       containers:
         - name: ddi-converter-tool
-          image: sshoc/ddi-converter-tool:0.5.0
+          image: ekoindarto/ddi-converter-tool:0.5.1
 #          imagePullPolicy: Never
           ports:
             - containerPort: 8520
           env:
-            - name: FILEVIEWER_PORT  # Otherwise, this is wrongfully set by K8s.
+            - name: DDI_CONVERTER_TOOL_PORT  # Otherwise, this is wrongfully set by K8s.
               value: "8520"
 
