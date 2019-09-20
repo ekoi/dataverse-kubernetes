@@ -23,7 +23,7 @@ Default output format [None]:
 ````
 The instruction to get access key ID an secret access key can be found on [AWS - Managing Access Keys for IAM Users - Managing Access Keys (Console)
 ](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html?icmpid=docs_iam_console#Using_CreateAccessKey).
-The region 
+
 ### Installing Kubernetes Operations(KOPS) and Kubectl
 On Mac OS X, we’ll use brew to install. 
 ```commandline
@@ -32,12 +32,13 @@ $brew update && brew install kops kubectl
 Check the kops an kubectl version:
 ```commandline
 $kops version
+
 Version 1.13.0
 $kubectl version
  Client Version: version.Info{Major:"1", Minor:"15", GitVersion:"v1.15.3", GitCommit:"2d3c76f9091b6bec110a5e63777c332469e0cba2", GitTreeState:"clean", BuildDate:"2019-08-19T12:36:28Z", GoVersion:"go1.12.9", Compiler:"gc", Platform:"darwin/amd64"}
  Server Version: version.Info{Major:"1", Minor:"13", GitVersion:"v1.13.10", GitCommit:"37d169313237cb4ceb2cc4bef300f2ae3053c1a2", GitTreeState:"clean", BuildDate:"2019-08-19T10:44:49Z", GoVersion:"go1.11.13", Compiler:"gc", Platform:"linux/amd64"}
 ```
-We're also going to make use of a other tool, namely [Helm](https://helm.sh/), that will be explained as it come up.
+We're also going to make use of [Helm](https://helm.sh/) - a package manager for Kubernetes, that will be explained as [it come up](#install-helm).
 ### Setting up a Kubernetes cluster using KOPS on AWS
 Choose a cluster name, e.q. dans.dataverse.tk and save as kops environment variable:
 ```commandline
@@ -149,13 +150,95 @@ Confirm that the service has external ip.
  
 Now, the http://dans.dataverse.tk should be accessible from the browser.
      
-### Automate Let’s Encrypt ssl certification
-Installing _helm_ using brew:
+### Setting certification manager to automated Let’s Encrypt ssl certification
+ <a name="installing-helm">Installing _helm_ using brew</a>:
         
         brew install kubernetes-helm
+        
+Since Tiller Pod needs to run as a privileged service account, with cluter-admin ClusterRole, initialized helm with a service account, otherwise we will get "Error: release cert-manager failed: namespaces "kube-system" is forbidden".
+        
+         kubectl apply -f k8s/letscrypt/rbac-config.yaml
+         helm init --service-account tiller
+         helm repo update
 
+Execute _helm ls_, there would not be any output from running this command and that is expected. 
+         
+         helm ls
+                 
+Install tiller service account:
+        
+        kubectl create serviceaccount tiller --namespace=kube-system
+        kubectl create clusterrolebinding tiller-admin --serviceaccount=kube-system:tiller --clusterrole=cluster-admin
+        kubectl apply -f k8s/letscrypt/00-crds.yaml
+Output:
+![crds](readme-imgs/crds.png "crds") 
 
+Install certificate manager in kubernetes:
+        
+        kubectl label namespace default certmanager.k8s.io/disable-validation="true"
+        helm repo add jetstack https://charts.jetstack.io
+        helm repo update
+        helm install --name cert-manager --namespace default jetstack/cert-manager
+We can see what this process looks like:
+![crt](readme-imgs/crt.png "crt")
+    
+Deploy certification issuer:
 
+        kubectl create -f k8s/letscrypt/issure.yaml
+        
+Output:
+![crti](readme-imgs/crti.png "crti")
+
+Confirm the status of certificate:
+    
+        kubectl get certificate
+        kubectl describe certificate
+        
+Output:
+![crt-issuer](readme-imgs/crt-issuer.png "crt-issuer")
+
+After waiting a bit, let's check it:
+        
+        helm list
+
+Output:
+![hls](readme-imgs/hls.png "hls")
+
+Deploy ingress-nginx:
+        
+        kubectl apply -f k8s/letscrypt/ingress.yaml
+        
+Wait a little bit, and then confirm it using _curl_:
+    
+        curl --insecure -v https://dans.dataverse.tk 2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
+        
+We can see:
+![https](readme-imgs/https.png "https")
+
+                
 ### Kubernetes Dashboard
+The following steps are about installing the kubernetes dashboard version v1.1, not the latest version.
+    
+        kubectl apply -f k8s/dashboard/kubernetes-dashboard.yaml
+        kubectl apply -f k8s/dashboard/heapster.yaml
+        kubectl apply -f k8s/dashboard/influxdb.yaml
+        kubectl apply -f k8s/dashboard/heapster-rbac.yaml
+        kubectl apply -f k8s/dashboard/eks-admin-service-account.yaml
+        
+Retrieve the authentication token, using the following command:   
+        
+        kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}')
+        
+We need to copy the token to the clipboard.
+![token](readme-imgs/token.png "token")
 
+We access Dashboard using the following command:
+
+        kubectl proxy
+
+The Dashboard will available at http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
+
+Choose the Token option, and then paste the token from the clipboard, and click the Sign In button.
+
+        
 ### Setting Up Jenkins                
