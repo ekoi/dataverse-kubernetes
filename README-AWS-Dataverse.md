@@ -109,7 +109,24 @@ Clone this project:
 Deploy dataverse:
         
         kubectl apply -k docs/aws-demo
+
+Please wait a little bit until Dataverse is running properly. Confirm it by executing the following command:
         
+        kubectl get pods
+We will see READY 1/1 and Status Running for dataverse, solr and postgres pods:
+![kgp](readme-imgs/kgp.png "kgp")
+
+Use the port-forward to see whether the dataverse running properly:
+        
+        kubectl port-forward service/dataverse 8080:8080
+        
+Open a browser, go to : http://localhost:8080
+
+When everything goes fine, continue the following steps. Otherwise, solve first the problem by open the dataverse log file:
+        
+        kubectl log dataverse-xxx-xxx # use here the right dataverse pod by executing kubectl get pods        
+We can get more information to solve the problem from the Kubernetes Dashboard. In this case we can first install [Kuberbetes Dashboard](#dashboard).
+
 Deploy fileviewers:
     
         kubectl apply -k k8s/filepreviewers
@@ -216,7 +233,7 @@ We can see:
 ![https](readme-imgs/https.png "https")
 
                 
-### Kubernetes Dashboard
+###  <a name="dashboard"></a>Kubernetes Dashboard
 The following steps are about installing the kubernetes dashboard version v1.1, not the latest version.
     
         kubectl apply -f k8s/dashboard/kubernetes-dashboard.yaml
