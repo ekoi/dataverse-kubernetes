@@ -122,7 +122,7 @@ Use the port-forward to see whether the dataverse running properly:
         
 Open a browser, go to : http://localhost:8080
 
-When everything goes fine, continue the following steps. Otherwise, solve first the problem by open the dataverse log file:
+When everything goes fine, to the steps (deploying fileviewers, ddi-converter etc). Otherwise, solve first the problem by open the dataverse log file:
         
         kubectl log dataverse-xxx-xxx # use here the right dataverse pod by executing kubectl get pods        
 We can get more information to solve the problem from the Kubernetes Dashboard. In this case we can first install [Kuberbetes Dashboard](#dashboard).
