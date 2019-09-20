@@ -1,7 +1,7 @@
 ## Setup Dataverse Infrastructure on Amazon Elastic Container Service for Kubernetes (EKS)
 
 In this topic, we create Dataverse infrastructure on Amazon EKS cluster.
-We registered dataverse.tk domain name. Register at [freenom](https://freenom.com) and search for your preferred domain then buy it for free.<br/>
+We registered dataverse.tk domain name. Register at [freenom](https://freenom.com) and search for our preferred domain then buy it for free.<br/>
 With [freenom](https://freenom.com) we can plenty of free domains such as .tk , .cf , .ml , .ga, .gq without the need of any credit card or financial information.
    
 ### Prerequisites
@@ -13,7 +13,7 @@ AWS CLI requires Python 2.6.5 or higher. Installation using pip.
 $pip install awscli
 ```
 
-Make sure to configure the AWS CLI to use your access key ID and secret access key:
+Make sure to configure the AWS CLI to use our access key ID and secret access key:
 ````
 $aws configure
 AWS Access Key ID [****************E4PT]:
@@ -72,7 +72,7 @@ Initiate the cluster with an update command:
 ```commandline
 kops update cluster --name ${KOPS_CLUSTER_NAME} --yes
 ```
-This will create the resources needed for your cluster to run. It will create a master and two node instances.
+This will create the resources needed for our cluster to run. It will create a master and two node instances.
 
 Wait for the cluster to start-up (sometimes it needs about a half hour), validate the cluster to ensure the master + 2 nodes have launched:
 ```commandline
@@ -82,7 +82,7 @@ kops validate cluster
 
 If we validate too early, we’ll get an error. Wait a little longer for the nodes to launch, and the validate step will return without error.
 
-Confirm that kubectl is connected to your Kubernetes cluster.
+Confirm that kubectl is connected to the Kubernetes cluster.
 ```commandline
 kubeclt get nodes
 ```
@@ -259,3 +259,11 @@ Choose the Token option, and then paste the token from the clipboard, and click 
 
         
 ### Setting Up Jenkins                
+
+### Delete the Kubernetes Cluster
+If at any point we want to destroy our cluster or if we messed up and need to start over.
+Execute the following command:
+    
+        kops delete cluster --name ${KOPS_CLUSTER_NAME} --yes
+
+
