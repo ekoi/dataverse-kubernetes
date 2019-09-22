@@ -13,27 +13,21 @@ metadata:
 #    ingress.kubernetes.io/force-ssl-redirect: "true" # Force every incoming HTTP requests to HTTPS. It is done by Nginx Ingress.
 spec:
   rules:
-  - host: dans.dataverse.tk
+  - host: dans.dataverse.tk #edit here to use your own (sub)domain name
     http:
       paths:
       - backend:
           serviceName: dataverse
           servicePort: 8080
-  - host: dct.dataverse.tk
+  - host: dct.dataverse.tk #edit here to use your own (sub)domain name
     http:
       paths:
       - backend:
           serviceName: ddi-converter-tool
           servicePort: 8520
-  - host: filepreviewers.dataverse.tk
+  - host: filepreviewers.dataverse.tk  #edit here to use your own (sub)domain name
     http:
       paths:
       - backend:
           serviceName: filepreviewers
           servicePort: 8566
-  tls:
-    - hosts:
-        - dans.dataverse.tk
-        - dct.dataverse.tk
-        - filepreviewers.dataverse.tk
-      secretName: letsencrypt-prod

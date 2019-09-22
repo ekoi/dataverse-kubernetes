@@ -138,6 +138,23 @@ Deploy dataverse:
         
         kubectl apply -k docs/aws-demo
 
+Check the deployed services:
+
+        kubectl get services
+        
+Output:
+
+![svc](readme-imgs/svc.png "svc")
+
+Check the deployed pods:
+
+        kubectl get pods:
+        
+Output:
+
+![pds](readme-imgs/pds.png "pds")        
+
+As we can seen, it displays _pending_ status.      
 Please wait a little bit until Dataverse is running properly. Confirm it by executing the following command:
         
         kubectl get pods
@@ -150,10 +167,16 @@ Use the port-forward to see whether the dataverse running properly:
         
 Open a browser, go to : http://localhost:8080
 
-When everything goes fine, to the steps (deploying fileviewers, ddi-converter etc). Otherwise, solve first the problem by open the dataverse log file:
+When everything goes fine, to the steps (deploying fileviewers, ddi-converter etc). 
+When the status of Dataverse shows _pending_ after a while (let says after half an hour), it can be indication of Dataverse starting problem.
+Check the Dataverse log file:
         
         kubectl log dataverse-xxx-xxx # use here the right dataverse pod by executing kubectl get pods        
-We can get more information to solve the problem from the Kubernetes Dashboard. In this case we can first install [Kuberbetes Dashboard](#dashboard).
+
+Install [Kuberbetes Dashboard](#dashboard).
+The following screenshot from kubernetes Dashboard shows an example of problem during starting the Dataverse.
+
+![dvn-error](readme-imgs/dvn-error.png "dvn-error")
 
 Deploy fileviewers:
     
@@ -176,6 +199,7 @@ On Freenom, by clicking management tools - Use custom nameservers (enter below),
 
 ![freenom-dns](readme-imgs/freenom-dns.png "freenom-dns")
 
+Before continue to the next step, please edit the k8s/nginx/ingress.yaml file. Edit the _host_ with right (sub)domain name.
 Deploy nginx:
     
         kubectl apply -k k8s/nginx
@@ -232,6 +256,7 @@ Deploy certification issuer:
         kubectl create -f k8s/letscrypt/issure.yaml
         
 Output:
+
 ![crti](readme-imgs/crti.png "crti")
 
 Confirm the status of certificate:
@@ -281,7 +306,15 @@ We access Dashboard using the following command:
 
         kubectl proxy
 
-The Dashboard will available at http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#!/login
+Output:
+
+![proxy-start](readme-imgs/proxy-start.png "proxy-start")
+
+
+The Dashboard will available at:
+        
+        http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#!/login (http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#!/login
+
 
 Choose the Token option, and then paste the token from the clipboard, and click the Sign In button.
 ![dashboard](readme-imgs/dashboard.png "dashboard")
