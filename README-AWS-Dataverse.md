@@ -9,78 +9,106 @@ Before setting up the Dataverse kubernetes cluster, we’ll need an [AWS account
 ### Installing AWS CLI
 First we need an installation of the [AWS Command Line Interface](https://aws.amazon.com/cli/).<br/>
 AWS CLI requires Python 2.6.5 or higher. Installation using pip.
-```commandline
-$pip install awscli
-```
+
+        pip install awscli
 
 Make sure to configure the AWS CLI to use our access key ID and secret access key:
-````
-$aws configure
-AWS Access Key ID [****************E4PT]:
-AWS Secret Access Key [****************iTjf]:
-Default region name [eu-central-1]:
-Default output format [None]:
-````
+        
+        aws configure
+
+![awsconfigure`](readme-imgs/awsconfigure.png "awsconfigure")
+
+
 The instruction to get access key ID an secret access key can be found on [AWS - Managing Access Keys for IAM Users - Managing Access Keys (Console)
 ](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html?icmpid=docs_iam_console#Using_CreateAccessKey).
 
 ### Installing Kubernetes Operations(KOPS) and Kubectl
 On Mac OS X, we’ll use brew to install. 
-```commandline
-$brew update && brew install kops kubectl
-```
+
+        brew update && brew install kops kubectl
+
 Check the kops an kubectl version:
-```commandline
-$kops version
+
+        kops version
 
 Version 1.13.0
-$kubectl version
- Client Version: version.Info{Major:"1", Minor:"15", GitVersion:"v1.15.3", GitCommit:"2d3c76f9091b6bec110a5e63777c332469e0cba2", GitTreeState:"clean", BuildDate:"2019-08-19T12:36:28Z", GoVersion:"go1.12.9", Compiler:"gc", Platform:"darwin/amd64"}
- Server Version: version.Info{Major:"1", Minor:"13", GitVersion:"v1.13.10", GitCommit:"37d169313237cb4ceb2cc4bef300f2ae3053c1a2", GitTreeState:"clean", BuildDate:"2019-08-19T10:44:49Z", GoVersion:"go1.11.13", Compiler:"gc", Platform:"linux/amd64"}
-```
+
+        kubectl version
+        
+![kv](readme-imgs/kv.png "kv")
+
 We're also going to make use of [Helm](https://helm.sh/) - a package manager for Kubernetes, that will be explained as [it come up](#install-helm).
 ### Setting up a Kubernetes cluster using KOPS on AWS
 Choose a cluster name, e.q. dans.dataverse.tk and save as kops environment variable:
-```commandline
-export KOPS_CLUSTER_NAME=dans.dataverse.tk
-```
+
+        export KOPS_CLUSTER_NAME=dans.dataverse.tk
+
 Create a S3 bucket to store the cluster state using AWS CLI:
-```commandline
-aws s3api create-bucket --bucket dans-dataverse-state-store --region eu-central-1 --create-bucket-configuration LocationConstraint=eu-central-1
-```
+
+        aws s3api create-bucket --bucket dans-dataverse-state-store --region eu-central-1 --create-bucket-configuration LocationConstraint=eu-central-1
+
 Now when we check our bucket, we would see:
 ![s3](readme-imgs/s3.png "S3")
 
 Once you’ve created the bucket, execute the following command:
-```commandline
-export KOPS_STATE_STORE=s3://dans-dataverse-state-store
-```
+
+        export KOPS_STATE_STORE=s3://dans-dataverse-state-store
+
 For safe keeping we should add the two environment variables: **KOPS_CLUSTER_NAME** and **KOPS_STATE_STORE** to the ~/.bash_profile or ~/.bashrc configs or whatever the equivalent e.q _.zshrc_ .
 Since we are on AWS we can use a S3 backing store. It is recommended to enabling versioning on the S3 bucket.<br/>
 Let’s enable versioning to revert or recover a previous state store. 
-```commandline
-aws s3api put-bucket-versioning --bucket dans-dataverse-state-store  --versioning-configuration Status=Enabled
-```
+
+        aws s3api put-bucket-versioning --bucket dans-dataverse-state-store  --versioning-configuration Status=Enabled
+
 ### Creating the cluster
 AWS is now as ready as it can be, to generate the cluster configuration using the following command:
-```commandline
-kops create cluster --node-count 1 --master-size t2.small --master-volume-size 10 --node-size t2.small --node-volume-size 10 --zones eu-central-1a
-```
+
+        kops create cluster --node-count 1 --master-size t2.medium --master-volume-size 10 --node-size t2.medium --node-volume-size 10 --zones eu-central-1a
+
 ![kops-configure](readme-imgs/kops-cluster-conf.png "kops configure")
 
+When we create cluster for the first time, we will get the following output:
+![ft](readme-imgs/ft.png "ft")
+
+As it is shown in the figure above, execute:
+
+        kops create secret --name ${KOPS_CLUSTER_NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
+ 
+![sk](readme-imgs/sk.png "sk")
+<br/>
+<br/>
+
 Initiate the cluster with an update command:
-```commandline
-kops update cluster --name ${KOPS_CLUSTER_NAME} --yes
-```
+
+        kops update cluster --name ${KOPS_CLUSTER_NAME} --yes
+
 This will create the resources needed for our cluster to run. It will create a master and two node instances.
 
 Wait for the cluster to start-up (sometimes it needs about a half hour), validate the cluster to ensure the master + 2 nodes have launched:
-```commandline
-kops validate cluster
-```
+
+        kops validate cluster
+
 ![kops-validate](readme-imgs/kops-validate.png "kops validate")
 
-If we validate too early, we’ll get an error. Wait a little longer for the nodes to launch, and the validate step will return without error.
+If we validate too early, we’ll get an error. 
+
+![kvfail](readme-imgs/kvfail.png "kvfail")
+
+We will see on the aws web ui console:
+![aws-init](readme-imgs/aws-init.jpeg "aws-init")
+
+After some time, it still shows error:
+
+![kvfail2](readme-imgs/kvfail2.png "kvfail2")
+
+Wait a little longer for the nodes to launch, and the validate step will return without error.
+
+![csuccess](readme-imgs/csuccess.png "csuccess")
+
+We will see on the aws web ui console:
+
+![aws-success](readme-imgs/aws-success.jpeg "aws-success")
+
 
 Confirm that kubectl is connected to the Kubernetes cluster.
 ```commandline
@@ -253,10 +281,10 @@ We access Dashboard using the following command:
 
         kubectl proxy
 
-The Dashboard will available at http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
+The Dashboard will available at http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#!/login
 
 Choose the Token option, and then paste the token from the clipboard, and click the Sign In button.
-
+![dashboard](readme-imgs/dashboard.png "dashboard")
         
 ### Setting Up Jenkins                
 
