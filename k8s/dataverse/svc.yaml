@@ -23,6 +23,10 @@ spec:
       name: dataverse-glassfish
       targetPort: 4848
       protocol: TCP
+    - port: 9009
+      name: dataverse-glassfish-debug
+      targetPort: 9009
+      protocol: TCP
   selector:
     app.kubernetes.io/name: dataverse
     app.kubernetes.io/part-of: dataverse
