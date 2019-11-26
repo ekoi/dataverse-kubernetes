@@ -15,6 +15,10 @@ spec:
       name: http
       targetPort: 8080
       protocol: TCP
+    - port: 4848
+      name: glassfish
+      targetPort: 4848
+      protocol: TCP
     - port: 8009
       name: ajp
       targetPort: 8009
