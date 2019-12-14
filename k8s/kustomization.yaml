@@ -9,7 +9,7 @@ resources:
   - dataverse/jobs/bootstrap.yaml
 
 images:
-  - name: iqss/dataverse-k8s
-    newTag: "4.16"
+  - name: ekoindarto/dataverse
+    newTag: "latest"
   - name: iqss/solr-k8s
     newTag: "4.16"
