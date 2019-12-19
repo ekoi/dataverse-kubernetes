@@ -7,5 +7,5 @@ resources:
   - svc.yaml
 
 images:
-  - name: iqss/solr-k8s
-    newTag: "4.16"
+  - name: ekoindarto/solr
+    newTag: "latest"

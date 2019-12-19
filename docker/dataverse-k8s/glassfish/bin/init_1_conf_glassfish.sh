@@ -46,7 +46,7 @@ fi
 
 # JMS
 echo "Creating JMS resources."
-asadmin delete-connector-connection-pool --cascade=true jms/__defaultConnectionFactory-Connection-Pool
+#asadmin delete-connector-connection-pool --cascade=true jms/__defaultConnectionFactory-Connection-Pool
 asadmin create-connector-connection-pool \
           --steadypoolsize 1 \
           --maxpoolsize 250 \
@@ -114,8 +114,13 @@ env -0 | grep -z -Ee "^(dataverse|doi)_" | while IFS='=' read -r -d '' k v; do
     asadmin create-jvm-options "-D${KEY}=${v}"
 done
 
+
 # 4. Stop the domain again (will be started in foreground later)
 asadmin stop-domain
+
+git clone https://github.com/ekoi/dataverse /tmp/dataverse-poc
+cd /tmp/dataverse-poc; git fetch; git pull origin dataverse-poc; mvn install -DskipTests
+mv /tmp/dataverse-poc/target/dataverse-4.18.1.war ${HOME_DIR}/dvinstall/dataverse.war
 
 # 5. Symlink the WAR file to autodeploy on real start
 ln -s ${HOME_DIR}/dvinstall/dataverse.war ${DOMAIN_DIR}/autodeploy/dataverse.war

@@ -32,7 +32,7 @@ spec:
           image: giantswarm/tiny-tools
           command: ['sh', '-c',
             'until curl -sS -f "http://${DATAVERSE_SERVICE_HOST}:${DATAVERSE_SERVICE_PORT_HTTP}/robots.txt" -m 2 2>&1 > /dev/null;
-            do echo waiting for dataverse; sleep 15; done;']
+            do echo waiting for dataverse; sleep 150; done;']
       volumes:
         - name: api-secret
           secret:

@@ -9,7 +9,7 @@ FROM centos:7
 LABEL maintainer="FDM FZJ <forschungsdaten@fz-juelich.de>"
 
 ARG TINI_VERSION=v0.18.0
-ARG VERSION=4.16
+ARG VERSION=4.18.1
 ARG DOMAIN=domain1
 
 ENV HOME_DIR=/opt/dataverse\
@@ -30,16 +30,16 @@ ENV HOME_DIR=/opt/dataverse\
 ENV PATH="${PATH}:${GLASSFISH_DIR}/bin"
 
 # Install prerequisites
-RUN yum install -y java-1.8.0-openjdk-headless epel-release unzip curl wget && \
+RUN yum install -y java-1.8.0-openjdk-headless epel-release unzip curl git maven less mlocate telnet wget && \
     yum install -y postgresql jq ImageMagick
 
 # Create and set the Glassfish user and working directory owned by the new user
 RUN groupadd -g 1000 glassfish && \
     useradd -u 1000 -M -s /bin/bash -d ${HOME_DIR} glassfish -g glassfish && \
     echo glassfish:glassfish | chpasswd && \
-    mkdir -p ${HOME_DIR} ${SCRIPT_DIR} ${SECRETS_DIR} && \
+    mkdir -p ${HOME_DIR} ${SCRIPT_DIR} ${SECRETS_DIR}  ${SCRIPT_DIR}/api  ${SCRIPT_DIR}/init.d && \
     mkdir -p ${DATA_DIR} ${METADATA_DIR} ${DOCROOT_DIR} && \
-    chown -R glassfish: ${HOME_DIR} ${DATA_DIR} ${METADATA_DIR} ${DOCROOT_DIR}
+    chown -R glassfish: ${HOME_DIR} ${DATA_DIR} ${METADATA_DIR} ${DOCROOT_DIR} ${SECRETS_DIR} ${SCRIPT_DIR} ${SCRIPT_DIR}/api ${SCRIPT_DIR}/init.d
 
 # Install tini as minimized init system
 RUN wget --no-verbose -O /tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini && \
@@ -99,10 +99,29 @@ RUN wget --no-verbose -O dvinstall.zip ${DATAVERSE_PKG} && \
     rm dvinstall.zip && \
     find . -iname "custom*.tsv" -delete
 
+RUN git clone https://github.com/ekoi/dataverse dataverse-poc && cd dataverse-poc && git fetch && \
+    git pull origin dataverse-poc && mvn install -DskipTests && mv target/dataverse-4.18.1.war ${HOME_DIR}/dvinstall/dataverse.war
+
+
 # Copy across docker scripts
-COPY --chown=glassfish:glassfish docker/dataverse-k8s/bin/* docker/dataverse-k8s/glassfish/bin/* ${SCRIPT_DIR}/
-RUN mkdir -p ${SCRIPT_DIR}/init.d && \
-    chmod +x ${SCRIPT_DIR}/*
+
+RUN mkdir -p ${SCRIPT_DIR}/init.d && echo "supersecret" > ${SCRIPT_DIR}/api/key
+#COPY --chown=glassfish:glassfish ./bin/bootstrap-job.sh ${SCRIPT_DIR}/init.d/bootstrap-job.sh
+#COPY --chown=glassfish:glassfish ./bin/config-job.sh ${SCRIPT_DIR}/init.d/config-job.sh
+#COPY --chown=glassfish:glassfish ./bin/metadata-update.sh ${SCRIPT_DIR}/init.d/metadata-update.sh
+COPY --chown=glassfish:glassfish ./bin/bootstrap-job.sh ${SCRIPT_DIR}/bootstrap-job.sh
+COPY --chown=glassfish:glassfish ./bin/config-job.sh ${SCRIPT_DIR}/config-job.sh
+COPY --chown=glassfish:glassfish ./bin/metadata-update.sh ${SCRIPT_DIR}/metadata-update.sh
+COPY --chown=glassfish:glassfish ./bin/default.config ${SCRIPT_DIR}/default.config
+COPY --chown=glassfish:glassfish ./bin/init_1_conf_glassfish.sh ${SCRIPT_DIR}/init_1_conf_glassfish.sh
+COPY --chown=glassfish:glassfish ./bin/entrypoint.sh ${SCRIPT_DIR}/entrypoint.sh
+
+RUN mkdir -p ${SCRIPT_DIR}/init.d && chmod +x ${SCRIPT_DIR}/*
+
+
 
 ENTRYPOINT ["/tini", "--"]
 CMD ["scripts/entrypoint.sh"]
+
+#USER root
+#CMD ["tail", "-f", "/dev/null"]

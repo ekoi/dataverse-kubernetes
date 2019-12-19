@@ -1,0 +1,254 @@
+#metadataBlock	name	dataverseAlias	displayName												
+	easy-metadata		Electronic Archiving System - DANS Custom Metadata												
+#datasetField	name	title	description	watermark	 fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id
+	easy-pno	People & organisations	People & organisations		none	1				TRUE		TRUE			easy-metadata
+	easy-pno-role	Role	Role		text	2		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE	easy-pno	easy-metadata
+	easy-pno-organisation	Organisation	Organisation	Organisation	text	3		TRUE	FALSE	FALSE	TRUE	TRUE	FALSE	easy-pno	easy-metadata
+	easy-pno-titles	(academic) title(s)	(academic) title(s)	(academic) title(s)	text	4		TRUE	FALSE	FALSE	TRUE	TRUE	FALSE	easy-pno	easy-metadata
+	easy-pno-initials	Initials	Initials	R.J.	text	5		TRUE	FALSE	FALSE	TRUE	TRUE	TRUE	easy-pno	easy-metadata
+	easy-pno-prefix	Prefix	Prefix	van den	text	6		TRUE	FALSE	FALSE	TRUE	TRUE	FALSE	easy-pno	easy-metadata
+	easy-pno-surname	Surname	Surname	Berg	text	7		TRUE	FALSE	FALSE	TRUE	TRUE	TRUE	easy-pno	easy-metadata
+	easy-pno-id-dai	DAI	Digital Author Identifier (DAI), specific for The Netherlands	123456785	text	8	#NAME: #VALUE	TRUE	FALSE	FALSE	TRUE	TRUE	FALSE	easy-pno	easy-metadata
+	easy-pno-id-isni	ISNI	International Standard Name Identifier (ISNI)	000000012146438X	text	9	#NAME: #VALUE	TRUE	FALSE	FALSE	TRUE	TRUE	FALSE	easy-pno	easy-metadata
+	easy-pno-id-orcid	ORCID	Open Researcher and Contributor ID (ORCID)	0000-0002-3843-3472	text	10	#NAME: #VALUE	TRUE	FALSE	FALSE	TRUE	TRUE	FALSE	easy-pno	easy-metadata
+	easy-collection	Collection	Collection		text	11		TRUE	TRUE	FALSE	TRUE	TRUE	FALSE		easy-metadata
+	easy-audience	Audience	Audience		text	11		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE		easy-metadata
+#controlledVocabulary	DatasetField	Value	identifier	displayOrder											
+	easy-pno-role	Creator	Creator	0											
+	easy-pno-role	Data collector	DataCollector	1											
+	easy-pno-role	Data curator	DataCurator	2											
+	easy-pno-role	Editor	Editor	3											
+	easy-pno-role	Hosting institution	HostingInstitution	4											
+	easy-pno-role	Project leader	ProjectLeader	5											
+	easy-pno-role	Project member	ProjectMember	6											
+	easy-pno-role	Related person	RelatedPerson	7											
+	easy-pno-role	Research group	ResearchGroup	8											
+	easy-pno-role	Researcher	Researcher	9											
+	easy-pno-role	Sponsor	Sponsor	10											
+	easy-collection	Carare	Carare	0											
+	easy-collection	Oral History	OralHistory	1											
+	easy-collection	World War II	WorldWarII	2											
+	easy-collection	World War II – Getuigen Verhalen	WorldWarII–GetuigenVerhalen	3											
+	easy-audience	Science and technology	D10000	0											
+	easy-audience	--- Mathematics	D11000	1											
+	easy-audience	------ Logic, set theory and arithmetic	D11100	2											
+	easy-audience	------ Algebra, group theory	D11200	3											
+	easy-audience	------ Functions, differential equations	D11300	4											
+	easy-audience	------ Fourier analysis, functional analysis	D11400	5											
+	easy-audience	------ Geometry, topology	D11500	6											
+	easy-audience	------ Probability theory, statistics	D11600	7											
+	easy-audience	------ Operations research	D11700	8											
+	easy-audience	------ Numerical analysis	D11800	9											
+	easy-audience	--- Physics	D12000	10											
+	easy-audience	------ Metrology, scientific instrumentation	D12100	11											
+	easy-audience	------ Theoretical physics, (quantum) mechanics	D12200	12											
+	easy-audience	------ Electromagnetism, optics, acoustics	D12300	13											
+	easy-audience	------ Elementary particle physics and nuclear physics	D12400	14											
+	easy-audience	------ Atomic and molecular physics	D12600	15											
+	easy-audience	------ Gases, fluid dynamics, plasma physics	D12700	16											
+	easy-audience	------ Solid-state physics	D12800	17											
+	easy-audience	--- Chemistry	D13000	18											
+	easy-audience	------ Analytical chemistry	D13100	19											
+	easy-audience	------ Macromolecular chemistry, polymer chemistry	D13200	20											
+	easy-audience	------ Organic chemistry	D13300	21											
+	easy-audience	------ Inorganic chemistry	D13400	22											
+	easy-audience	------ Physical chemistry	D13500	23											
+	easy-audience	------ Catalysis	D13600	24											
+	easy-audience	------ Theoretical chemistry, quantum chemistry	D13700	25											
+	easy-audience	--- Technology	D14000	26											
+	easy-audience	------ Materials technology	D14100	27											
+	easy-audience	------ Mechanical engineering	D14200	28											
+	easy-audience	--------- Technical mechanics	D14210	29											
+	easy-audience	--------- Engines, energy converters	D14220	30											
+	easy-audience	--------- Vehicle and transport technology	D14230	31											
+	easy-audience	------------ Road vehicles, rail vehicles	D14231	32											
+	easy-audience	------------ Vessels	D14232	33											
+	easy-audience	------------ Aircraft and spacecraft	D14233	34											
+	easy-audience	--------- Manufacturing technology, mechanical technology, robotics	D14240	35											
+	easy-audience	------ Electrical engineering	D14300	36											
+	easy-audience	--------- Telecommunication engineering	D14310	37											
+	easy-audience	--------- Microelectronics	D14320	38											
+	easy-audience	--------- Electrical energy technology	D14330	39											
+	easy-audience	--------- Measurement and control engineering	D14340	40											
+	easy-audience	------ Civil engineering, building technology	D14400	41											
+	easy-audience	--------- Building technology	D14410	42											
+	easy-audience	--------- Civil engineering	D14420	43											
+	easy-audience	--------- Hydraulic engineering	D14430	44											
+	easy-audience	------------ Offshore technology	D14431	45											
+	easy-audience	--------- Sanitary engineering	D14440	46											
+	easy-audience	------------ Drinking water supply	D14441	47											
+	easy-audience	------------ Waste water treatment	D14442	48											
+	easy-audience	------------ Waste treatment	D14443	49											
+	easy-audience	------ Chemical technology, process technology	D14500	50											
+	easy-audience	--------- Inorganic-chemical technology	D14510	51											
+	easy-audience	--------- Organic-chemical technology	D14520	52											
+	easy-audience	--------- Fuel technology	D14530	53											
+	easy-audience	--------- Food technology	D14540	54											
+	easy-audience	------ Geotechnics	D14600	55											
+	easy-audience	--------- Mining engineering	D14610	56											
+	easy-audience	--------- Engineering geology	D14620	57											
+	easy-audience	------ Industrial design	D14700	58											
+	easy-audience	------ Energy	D14800	59											
+	easy-audience	------ Technology assessment	D14900	60											
+	easy-audience	--- Earth sciences	D15000	61											
+	easy-audience	------ Geochemistry, geophysics	D15100	62											
+	easy-audience	------ Paleontology, stratigraphy	D15200	63											
+	easy-audience	------ Physical geology	D15300	64											
+	easy-audience	------ Petrology, mineralogy, sedimentology	D15400	65											
+	easy-audience	------ Atmospheric sciences	D15500	66											
+	easy-audience	------ Hydrospheric sciences	D15600	67											
+	easy-audience	------ Geodesy, physical geography	D15700	68											
+	easy-audience	--- Computer science	D16000	69											
+	easy-audience	------ Computer systems, architectures, networks	D16100	70											
+	easy-audience	------ Software, algorithms, control systems	D16200	71											
+	easy-audience	------ Theoretical computer science	D16300	72											
+	easy-audience	------ Information systems, databases	D16400	73											
+	easy-audience	------ User interfaces, multimedia	D16500	74											
+	easy-audience	------ Artificial intelligence, expert systems	D16600	75											
+	easy-audience	------ Computer graphics	D16700	76											
+	easy-audience	------ Computer simulation, virtual reality	D16800	77											
+	easy-audience	--- Astronomy, astrophysics	D17000	78											
+	easy-audience	--- Agriculture and the physical environment	D18000	79											
+	easy-audience	------ Exploitation and management physical environment	D18100	80											
+	easy-audience	--------- Air	D18110	81											
+	easy-audience	--------- Surfacewater and groundwater	D18120	82											
+	easy-audience	--------- Soil	D18130	83											
+	easy-audience	--------- Nature and landscape	D18140	84											
+	easy-audience	------ Plant production and animal production	D18200	85											
+	easy-audience	--------- Agriculture and horticulture	D18210	86											
+	easy-audience	--------- Animal husbandry	D18220	87											
+	easy-audience	--------- Fisheries	D18230	88											
+	easy-audience	--------- Forestry	D18240	89											
+	easy-audience	--------- Agriculturural technology	D18250	90											
+	easy-audience	Life sciences, medicine and health care	D20000	91											
+	easy-audience	--- Life sciences	D21000	92											
+	easy-audience	------ Bioinformatics, biomathematics	D21100	93											
+	easy-audience	------ Biophysics, clinical physics	D21200	94											
+	easy-audience	------ Biochemistry, molecular biology	D21300	95											
+	easy-audience	------ Genetics	D21400	96											
+	easy-audience	------ Histology, cell biology	D21500	97											
+	easy-audience	------ Anatomy, morphology	D21600	98											
+	easy-audience	------ Physiology	D21700	99											
+	easy-audience	------ Immunology, serology	D21800	100											
+	easy-audience	------ Epidemiology and medical statistics	D21900	101											
+	easy-audience	--- Biology	D22000	102											
+	easy-audience	------ Microbiology	D22100	103											
+	easy-audience	------ Biogeography, taxonomy	D22200	104											
+	easy-audience	------ Animal ethology, animal psychology	D22300	105											
+	easy-audience	------ Ecology	D22400	106											
+	easy-audience	------ Botany	D22500	107											
+	easy-audience	------ Zoology	D22600	108											
+	easy-audience	------ Toxicology (plants, invertebrates)	D22700	109											
+	easy-audience	--- Medicine	D23000	110											
+	easy-audience	------ Pathology, pathological anatomy	D23100	111											
+	easy-audience	--------- Infections, parasitology, virology	D23110	112											
+	easy-audience	--------- Oncology	D23120	113											
+	easy-audience	--------- Allergology	D23130	114											
+	easy-audience	--------- Traumatology	D23140	115											
+	easy-audience	------ Organs and organ systems	D23200	116											
+	easy-audience	--------- Dermatology, venereology, rheumatology, orthopaedics	D23210	117											
+	easy-audience	------------ Dermatology	D23211	118											
+	easy-audience	------------ Venereology	D23212	119											
+	easy-audience	------------ Rheumatology	D23213	120											
+	easy-audience	------------ Orthopaedics	D23214	121											
+	easy-audience	--------- Internal medicine	D23220	122											
+	easy-audience	------------ Blood and lymphatic diseases	D23221	123											
+	easy-audience	------------ Cardiovascular disorders	D23222	124											
+	easy-audience	------------ Gastrointestinal system	D23223	125											
+	easy-audience	------------ Gynaecology and obstetrics	D23224	126											
+	easy-audience	------------ Pulmonary disorders	D23225	127											
+	easy-audience	------------ Nephrology	D23226	128											
+	easy-audience	------------ Urology	D23227	129											
+	easy-audience	--------- Neurology, otorhinolaryngology, opthalmology	D23230	130											
+	easy-audience	------------ Neurology	D23231	131											
+	easy-audience	------------ Otorhinolaryngology	D23232	132											
+	easy-audience	------------ Ophthalmology	D23233	133											
+	easy-audience	--------- Dentistry	D23240	134											
+	easy-audience	------ Medical specialisms	D23300	135											
+	easy-audience	--------- Surgery	D23310	136											
+	easy-audience	--------- Anesthesiology	D23320	137											
+	easy-audience	--------- Radiology, radiotherapy	D23330	138											
+	easy-audience	--------- Biopharmacology, toxicology	D23340	139											
+	easy-audience	--------- Psychiatry, clinical psychology	D23350	140											
+	easy-audience	--------- Age-related medical specialisms	D23360	141											
+	easy-audience	------------ Neonatology	D23361	142											
+	easy-audience	------------ Pediatrics	D23362	143											
+	easy-audience	------------ Geriatrics	D23363	144											
+	easy-audience	--------- Social medicine	D23370	145											
+	easy-audience	--------- Primary care (including General practice)	D23380	146											
+	easy-audience	--------- Occupational medicine	D23390	147											
+	easy-audience	--- Health sciences	D24000	148											
+	easy-audience	------ Nursing sciences	D24100	149											
+	easy-audience	------ Health education, prevention	D24200	150											
+	easy-audience	------ Nutrition	D24300	151											
+	easy-audience	--- Kinesiology	D25000	152											
+	easy-audience	------ Rehabilitation	D25100	153											
+	easy-audience	--- Veterinary medicine	D26000	154											
+	easy-audience	Humanities	D30000	155											
+	easy-audience	------ Digital humanities	D30100	156											
+	easy-audience	--- Paleography, bibliology, bibliography, library science	D31000	157											
+	easy-audience	--- Philosophy	D32000	158											
+	easy-audience	------ History and philosophy of science and technology	D32100	159											
+	easy-audience	------ History and philosphy of the life sciences, ethics, evolution biology	D32200	160											
+	easy-audience	------ History and philosophy of the humanities	D32300	161											
+	easy-audience	------ History and philosophy of the behavioural sciences	D32400	162											
+	easy-audience	------ History and philosophy of the social sciences	D32500	163											
+	easy-audience	--- Theology and religious studies	D33000	164											
+	easy-audience	--- History	D34000	165											
+	easy-audience	------ Antiquity	D34100	166											
+	easy-audience	------ Middle Ages	D34200	167											
+	easy-audience	------ Modern and contemporary history	D34300	168											
+	easy-audience	--- Arts and culture	D35000	169											
+	easy-audience	------ History of arts and architecture	D35100	170											
+	easy-audience	------ Musicology	D35200	171											
+	easy-audience	------ Dramaturgy	D35300	172											
+	easy-audience	------ Media sciences	D35400	173											
+	easy-audience	------ Architecture and building construction	D35500	174											
+	easy-audience	--- Language and literature studies	D36000	175											
+	easy-audience	------ Linguistics	D36100	176											
+	easy-audience	------ Classic studies	D36200	177											
+	easy-audience	------ Germanic language and literature studies	D36300	178											
+	easy-audience	------ Romance language and literature studies	D36400	179											
+	easy-audience	------ Baltic and Slavonic language and literature studies	D36500	180											
+	easy-audience	------ Language and literature studies of other language groups	D36900	181											
+	easy-audience	--- Archaeology	D37000	182											
+	easy-audience	--- Area Studies	D38000	183											
+	easy-audience	Law and public administration	D40000	184											
+	easy-audience	--- Science of law	D41000	185											
+	easy-audience	------ History of law	D41100	186											
+	easy-audience	------ Private (procedural) law	D41200	187											
+	easy-audience	------ Criminal (procedural) law and criminology	D41300	188											
+	easy-audience	------ Constitutional and administrative law	D41400	189											
+	easy-audience	------ Interdisciplinary branches of law	D41500	190											
+	easy-audience	------ International law	D41600	191											
+	easy-audience	--- Political and administrative sciences	D42000	192											
+	easy-audience	------ Political science	D42100	193											
+	easy-audience	--------- Defence	D42110	194											
+	easy-audience	------ Social and public administration	D42200	195											
+	easy-audience	--- Traffic and transport studies	D44000	196											
+	easy-audience	Behavioural and educational sciences	D50000	197											
+	easy-audience	--- Psychology	D51000	198											
+	easy-audience	--- Educational theory	D52000	199											
+	easy-audience	--- Gerontology	D53000	200											
+	easy-audience	--- Pedagogics	D54000	201											
+	easy-audience	Social sciences	D60000	202											
+	easy-audience	--- Sociology	D61000	203											
+	easy-audience	--- Social geography	D62000	204											
+	easy-audience	--- Cultural anthropology	D63000	205											
+	easy-audience	--- Demography	D64000	206											
+	easy-audience	--- Urban and rural planning	D65000	207											
+	easy-audience	--- Communication sciences	D66000	208											
+	easy-audience	--- Leisure and recreation studies	D67000	209											
+	easy-audience	--- Social security studies	D68000	210											
+	easy-audience	--- Gender studies	D69000	211											
+	easy-audience	Economics and Business Administration	D70000	212											
+	easy-audience	--- Personnel administration and management	D70100	213											
+	easy-audience	Interdisciplinary sciences	E10000	214											
+	easy-audience	--- Biotechnology	E11000	215											
+	easy-audience	--- Technology in medicine and health care	E12000	216											
+	easy-audience	--- Development studies	E13000	217											
+	easy-audience	--- Migration, ethnic relations and multiculturalism	E14000	218											
+	easy-audience	--- Environmental studies	E15000	219											
+	easy-audience	--- Nanotechnology	E16000	220											
+	easy-audience	--- Greenhouse gas mitigation	E17000	221											
+	easy-audience	--- Biobased economy	E18000	222											

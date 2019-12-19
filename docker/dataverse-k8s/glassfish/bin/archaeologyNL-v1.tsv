@@ -1,0 +1,155 @@
+#metadataBlock	name	dataverseAlias	displayName												
+	archaeology-nl-metadata		Archaeology Metadata (Dutch/NL)												
+#datasetField	name	title	description	watermark	 fieldType	displayOrder	displayFormat	advancedSearchField	allowControlledVocabulary	allowmultiples	facetable	displayoncreate	required	parent	metadatablock_id
+	archaeology-nlArchisZaakidentificatie	Archis zaakidentificatie	If the project you are describing has been registered in Archis, you can use this field to fill in the Research Registration Number.	Enter a number up to 10 digits	text	0		TRUE	FALSE	TRUE	TRUE	TRUE	FALSE		archaeology-nl-metadata
+	archaeology-nlSubjectABRcomplex	Subject (ABR complex)	Select the keywords from the ‘Archeologisch Basis Register' (ABR) that describe the research project and dataset.		text	1		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE		archaeology-nl-metadata
+	archaeology-nlTemporalABRperiod	Temporal (ABR period)	Select the period of time to which the data relate from the 'Archeologisch Basis Register' (ABR).		text	2		TRUE	TRUE	TRUE	TRUE	TRUE	FALSE		archaeology-nl-metadata
+#controlledVocabulary	DatasetField	Value	identifier	displayOrder											
+	archaeology-nlSubjectABRcomplex	Depot	DEPO	0											
+	archaeology-nlSubjectABRcomplex	Economie - Akker/tuin	ELA	1											
+	archaeology-nlSubjectABRcomplex	Economie - Beenbewerking	EIBB	2											
+	archaeology-nlSubjectABRcomplex	Economie - Brouwerij	EIB	3											
+	archaeology-nlSubjectABRcomplex	Economie - Celtic field/raatakker	ELCF	4											
+	archaeology-nlSubjectABRcomplex	Economie - Drenkplaats/dobbe	ELDP	5											
+	archaeology-nlSubjectABRcomplex	Economie - Eendekooi	ELEK	6											
+	archaeology-nlSubjectABRcomplex	Economie - Glasblazerij	EIGB	7											
+	archaeology-nlSubjectABRcomplex	Economie - Grondstofwinning	EGX	8											
+	archaeology-nlSubjectABRcomplex	Economie - Houtbewerking	EIHB	9											
+	archaeology-nlSubjectABRcomplex	Economie - Houtskool-/kolenbranderij	EIHK	10											
+	archaeology-nlSubjectABRcomplex	Economie - IJzerwinning	EGYW	11											
+	archaeology-nlSubjectABRcomplex	Economie - Industrie/nijverheid	EIX	12											
+	archaeology-nlSubjectABRcomplex	Economie - Kalkbranderij	EIKB	13											
+	archaeology-nlSubjectABRcomplex	Economie - Kleiwinning	EGKW	14											
+	archaeology-nlSubjectABRcomplex	Economie - Landbouw	ELX	15											
+	archaeology-nlSubjectABRcomplex	Economie - Leerlooierij	EILL	16											
+	archaeology-nlSubjectABRcomplex	Economie - Mergel-/kalkwinning	EGMW	17											
+	archaeology-nlSubjectABRcomplex	Economie - Metaalbewerking/smederij	EIMB	18											
+	archaeology-nlSubjectABRcomplex	Economie - Molen	EIM	19											
+	archaeology-nlSubjectABRcomplex	Economie - Pottenbakkerij	EIPB	20											
+	archaeology-nlSubjectABRcomplex	Economie - Scheepvaart	ESCH	21											
+	archaeology-nlSubjectABRcomplex	Economie - Smelterij	EISM	22											
+	archaeology-nlSubjectABRcomplex	Economie - Steen-/pannenbakkerij	EISB	23											
+	archaeology-nlSubjectABRcomplex	Economie - Textielnijverheid	EITN	24											
+	archaeology-nlSubjectABRcomplex	Economie - Veekraal/schaapskooi	ELVK	25											
+	archaeology-nlSubjectABRcomplex	Economie - Veenwinning	EGVW	26											
+	archaeology-nlSubjectABRcomplex	Economie - Visserij	EVX	27											
+	archaeology-nlSubjectABRcomplex	Economie - Vuursteenbewerking	EIVB	28											
+	archaeology-nlSubjectABRcomplex	Economie - Vuursteenwinning	EGVU	29											
+	archaeology-nlSubjectABRcomplex	Economie - Zoutwinning/moernering	EGZW	30											
+	archaeology-nlSubjectABRcomplex	Economie, onbepaald	EX	31											
+	archaeology-nlSubjectABRcomplex	Begraving - Crematiegraf	GC	32											
+	archaeology-nlSubjectABRcomplex	Begraving - Dierengraf	GD	33											
+	archaeology-nlSubjectABRcomplex	Begraving - Grafheuvel, crematie	GHC	34											
+	archaeology-nlSubjectABRcomplex	Begraving - Grafheuvel, gemengd	GHIC	35											
+	archaeology-nlSubjectABRcomplex	Begraving - Grafheuvel, inhumatie	GHI	36											
+	archaeology-nlSubjectABRcomplex	Begraving - Grafheuvel, onbepaald	GHX	37											
+	archaeology-nlSubjectABRcomplex	Begraving - Grafveld, crematies	GVC	38											
+	archaeology-nlSubjectABRcomplex	Begraving - Grafveld, gemengd	GVIC	39											
+	archaeology-nlSubjectABRcomplex	Begraving - Grafveld, inhumaties	GVI	40											
+	archaeology-nlSubjectABRcomplex	Begraving - Grafveld, onbepaald	GVX	41											
+	archaeology-nlSubjectABRcomplex	Begraving - Inhumatiegraf	GI	42											
+	archaeology-nlSubjectABRcomplex	Begraving - Kerkhof	GVIK	43											
+	archaeology-nlSubjectABRcomplex	Begraving - Megalietgraf	GMEG	44											
+	archaeology-nlSubjectABRcomplex	Begraving - Rijengrafveld	GVIR	45											
+	archaeology-nlSubjectABRcomplex	Begraving - Urnenveld	GVCU	46											
+	archaeology-nlSubjectABRcomplex	Begraving - Vlakgraf, crematie	GCV	47											
+	archaeology-nlSubjectABRcomplex	Begraving - Vlakgraf, inhumatie	GIV	48											
+	archaeology-nlSubjectABRcomplex	Begraving - Vlakgraf, onbepaald	GXV	49											
+	archaeology-nlSubjectABRcomplex	Begraving, onbepaald	GX	50											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Brug	IBRU	51											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Dam	IDAM	52											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Dijk	IDIJ	53											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Duiker	IDUI	54											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Gemaal	IGEM	55											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Haven	IHAV	56											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Kanaal/vaarweg	IKAN	57											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Percelering/verkaveling	IPER	58											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Sluis	ISLU	59											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Steiger	ISTE	60											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Veenweg/veenbrug	IVW	61											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Waterweg (natuurlijk)	IWAT	62											
+	archaeology-nlSubjectABRcomplex	Infrastructuur - Weg	IWEG	63											
+	archaeology-nlSubjectABRcomplex	Infrastructuur, onbepaald	IX	64											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Basiskamp/basisnederzetting	NBAS	65											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Borg/stins/versterkt huis	NVB	66											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Extractiekamp/-nederzetting	NEXT	67											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Havezathe/ridderhofstad	NVH	68											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Huisplaats, onverhoogd	NHP	69											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Huisterp	NHT	70											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Kampdorp	NKD	71											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Moated site	NMS	72											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Romeins villa(complex)	NRV	73											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Stad	NS	74											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Terp/wierde	NT	75											
+	archaeology-nlSubjectABRcomplex	Nederzetting - Wegdorp	NWD	76											
+	archaeology-nlSubjectABRcomplex	Nederzetting, onbepaald	NX	77											
+	archaeology-nlSubjectABRcomplex	Religie - Cultusplaats/heiligdom/tempel	RCP	78											
+	archaeology-nlSubjectABRcomplex	Religie - Kapel	RKAP	79											
+	archaeology-nlSubjectABRcomplex	Religie - Kerk	RKER	80											
+	archaeology-nlSubjectABRcomplex	Religie - Klooster(complex)	RKLO	81											
+	archaeology-nlSubjectABRcomplex	Religie, onbepaald	RX	82											
+	archaeology-nlSubjectABRcomplex	Versterking - Kasteel	VK	83											
+	archaeology-nlSubjectABRcomplex	Versterking - Landweer	VLW	84											
+	archaeology-nlSubjectABRcomplex	Versterking - Legerplaats	VLP	85											
+	archaeology-nlSubjectABRcomplex	Versterking - Motte/kasteelheuvel/vliedberg	VKM	86											
+	archaeology-nlSubjectABRcomplex	Versterking - Schans	VSCH	87											
+	archaeology-nlSubjectABRcomplex	Versterking - Wachtpost	VWP	88											
+	archaeology-nlSubjectABRcomplex	Versterking - Wal-/vluchtburcht	VWB	89											
+	archaeology-nlSubjectABRcomplex	Versterking - Wal/omwalling	VWAL	90											
+	archaeology-nlSubjectABRcomplex	Versterking - Waterburcht	VKW	91											
+	archaeology-nlSubjectABRcomplex	Versterking, onbepaald	VX	92											
+	archaeology-nlSubjectABRcomplex	Onbekend	XXX	93											
+	archaeology-nlTemporalABRperiod	Paleolithicum: tot 8800 vC	PALEO	0											
+	archaeology-nlTemporalABRperiod	Paleolithicum vroeg: tot 300000 C14	PALEOV	1											
+	archaeology-nlTemporalABRperiod	Paleolithicum midden: 300000 - 35000 C14	PALEOM	2											
+	archaeology-nlTemporalABRperiod	Paleolithicum laat: 35000 C14 - 8800 vC	PALEOL	3											
+	archaeology-nlTemporalABRperiod	Paleolithicum laat A: 35000 - 18000 C14	PALEOLA	4											
+	archaeology-nlTemporalABRperiod	Paleolithicum laat B: 18000 C14 -8800 vC	PALEOB	5											
+	archaeology-nlTemporalABRperiod	Mesolithicum: 8800 - 4900 vC	MESO	6											
+	archaeology-nlTemporalABRperiod	Mesolithicum vroeg: 8800 - 7100 vC	MESOV	7											
+	archaeology-nlTemporalABRperiod	Mesolithicum midden: 7100 - 6450 vC	MESOM	8											
+	archaeology-nlTemporalABRperiod	Mesolithicum laat: 6450 -4900 vC	MESOL	9											
+	archaeology-nlTemporalABRperiod	Neolithicum: 5300 - 2000 vC	NEO	10											
+	archaeology-nlTemporalABRperiod	Neolithicum vroeg: 5300 - 4200 vC	NEOV	11											
+	archaeology-nlTemporalABRperiod	Neolithicum vroeg A: 5300 - 4900 vC	NEOVA	12											
+	archaeology-nlTemporalABRperiod	Neolithicum vroeg B: 4900 - 4200 vC	NEOVB	13											
+	archaeology-nlTemporalABRperiod	Neolithicum midden: 4200 - 2850 vC	NEOM	14											
+	archaeology-nlTemporalABRperiod	Neolithicum midden A: 4200 - 3400 vC	NEOMA	15											
+	archaeology-nlTemporalABRperiod	Neolithicum midden B: 3400 - 2850 vC	NEOMB	16											
+	archaeology-nlTemporalABRperiod	Neolithicum laat: 2850 - 2000 vC	NEOL	17											
+	archaeology-nlTemporalABRperiod	Neolithicum laat A: 2850 - 2450 vC	NEOLA	18											
+	archaeology-nlTemporalABRperiod	Neolithicum laat B: 2450 - 2000 vC	NEOLB	19											
+	archaeology-nlTemporalABRperiod	Bronstijd: 2000 - 800 vC	BRONS	20											
+	archaeology-nlTemporalABRperiod	Bronstijd vroeg: 2000 - 1800 vC	BRONSV	21											
+	archaeology-nlTemporalABRperiod	Bronstijd midden: 1800 - 1100 vC	BRONSM	22											
+	archaeology-nlTemporalABRperiod	Bronstijd midden A: 1800 - 1500 vC	BRONSMA	23											
+	archaeology-nlTemporalABRperiod	Bronstijd midden B: 1500 - 1100 vC	BRONSMB	24											
+	archaeology-nlTemporalABRperiod	Bronstijd laat: 1100 - 800 vC	BRONSL	25											
+	archaeology-nlTemporalABRperiod	IJzertijd: 800 - 12 vC	IJZ	26											
+	archaeology-nlTemporalABRperiod	IJzertijd vroeg: 800 - 500 vC	IJZV	27											
+	archaeology-nlTemporalABRperiod	IJzertijd midden: 500 - 250 vC	IJZM	28											
+	archaeology-nlTemporalABRperiod	IJzertijd laat: 250 - 12 vC	IJZL	29											
+	archaeology-nlTemporalABRperiod	Romeinse tijd: 12 vC - 450 nC	ROM	30											
+	archaeology-nlTemporalABRperiod	Romeinse tijd vroeg: 12 vC - 70 nC	ROMV	31											
+	archaeology-nlTemporalABRperiod	Romeinse tijd vroeg A: 12 vC - 25 nC	ROMVA	32											
+	archaeology-nlTemporalABRperiod	Romeinse tijd vroeg B: 25 - 70 nC	ROMVB	33											
+	archaeology-nlTemporalABRperiod	Romeinse tijd midden: 70 - 270 nC	ROMM	34											
+	archaeology-nlTemporalABRperiod	Romeinse tijd midden A: 70 - 150 nC	ROMMA	35											
+	archaeology-nlTemporalABRperiod	Romeinse tijd midden B: 150 - 270 nC	ROMMB	36											
+	archaeology-nlTemporalABRperiod	Romeinse tijd laat: 270 - 450 nC	ROML	37											
+	archaeology-nlTemporalABRperiod	Romeinse tijd laat A: 270 - 350 nC	ROMLA	38											
+	archaeology-nlTemporalABRperiod	Romeinse tijd laat B: 350 - 450 nC	ROMLB	39											
+	archaeology-nlTemporalABRperiod	Middeleeuwen: 450 - 1500 nC	XME	40											
+	archaeology-nlTemporalABRperiod	Middeleeuwen vroeg: 450 - 1050 nC	VME	41											
+	archaeology-nlTemporalABRperiod	Middeleeuwen vroeg A: 450 - 525 nC	VMEA	42											
+	archaeology-nlTemporalABRperiod	Middeleeuwen vroeg B: 525 - 725 nC	VMEB	43											
+	archaeology-nlTemporalABRperiod	Middeleeuwen vroeg C: 725 - 900 nC	VMEC	44											
+	archaeology-nlTemporalABRperiod	Middeleeuwen vroeg D: 900 - 1050 nC	VMED	45											
+	archaeology-nlTemporalABRperiod	Middeleeuwen laat: 1050 - 1500 nC	LME	46											
+	archaeology-nlTemporalABRperiod	Middeleeuwen laat A: 1050 - 1250 nC	LMEA	47											
+	archaeology-nlTemporalABRperiod	Middeleeuwen laat B: 1250 - 1500 nC	LMEB	48											
+	archaeology-nlTemporalABRperiod	Nieuwe tijd: 1500 - heden	NT	49											
+	archaeology-nlTemporalABRperiod	Nieuwe tijd A: 1500 - 1650 nC	NTA	50											
+	archaeology-nlTemporalABRperiod	Nieuwe tijd B: 1650 - 1850 nC	NTB	51											
+	archaeology-nlTemporalABRperiod	Nieuwe tijd C: 1850 - heden	NTC	52											
+	archaeology-nlTemporalABRperiod	Onbekend	XXX	53											

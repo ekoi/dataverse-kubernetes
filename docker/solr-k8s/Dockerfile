@@ -30,5 +30,9 @@ RUN wget --no-verbose -O dvinstall.zip ${DATAVERSE_PKG} && \
     unzip -qq dvinstall.zip -d ./ && \
     mkdir -p ${COLLECTION_DIR}/conf && \
     mv dvinstall/solrconfig.xml ${COLLECTION_DIR}/conf/solrconfig.xml && \
-    mv dvinstall/schema.xml ${COLLECTION_DIR}/conf/schema.xml && \
     rm -rf dvinstall dvinstall.zip
+
+COPY --chown=solr:solr ./schema.xml ${COLLECTION_DIR}/conf/schema.xml
+COPY --chown=solr:solr ./schema_dv_mdb_copies.xml ${COLLECTION_DIR}/conf/schema_dv_mdb_copies.xml
+COPY --chown=solr:solr ./schema_dv_mdb_fields.xml ${COLLECTION_DIR}/conf/schema_dv_mdb_fields.xml
+

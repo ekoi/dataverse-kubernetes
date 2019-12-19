@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: solr
-          image: iqss/solr-k8s
+          image: ekoindarto/solr
           ports:
             - name: index
               containerPort: 8983
