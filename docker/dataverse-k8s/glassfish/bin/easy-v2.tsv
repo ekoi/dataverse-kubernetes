@@ -25,11 +25,14 @@
 	easy-pno-role	Research group	ResearchGroup	8											
 	easy-pno-role	Researcher	Researcher	9											
 	easy-pno-role	Sponsor	Sponsor	10											
-	easy-collection	Carare	Carare	0											
-	easy-collection	Oral History	OralHistory	1											
-	easy-collection	World War II	WorldWarII	2											
-	easy-collection	World War II – Getuigen Verhalen	WorldWarII–GetuigenVerhalen	3											
-	easy-audience	Science and technology	D10000	0											
+	easy-collection	Carare	Carare	0
+	easy-collection	CLARIN	CLARIN	1
+	easy-collection	Oral History	OralHistory	2
+	easy-collection	World War II	WorldWarII	3
+	easy-collection	World War II - Getuigen Verhalen	World War II - Getuigen Verhalen	4
+	easy-collection	Social Sciences (Dutch)	Social Sciences (Dutch)	5
+	easy-collection	Social Sciences (English)	Social Sciences (English)	6
+	easy-audience	Science and technology	D10000	0
 	easy-audience	--- Mathematics	D11000	1											
 	easy-audience	------ Logic, set theory and arithmetic	D11100	2											
 	easy-audience	------ Algebra, group theory	D11200	3											
@@ -186,7 +189,7 @@
 	easy-audience	--- Veterinary medicine	D26000	154											
 	easy-audience	Humanities	D30000	155											
 	easy-audience	------ Digital humanities	D30100	156											
-	easy-audience	--- Paleography, bibliology, bibliography, library science	D31000	157											
+	easy-audience	--- Paleography, bibliology, bibliography, library science	D31000	157
 	easy-audience	--- Philosophy	D32000	158											
 	easy-audience	------ History and philosophy of science and technology	D32100	159											
 	easy-audience	------ History and philosphy of the life sciences, ethics, evolution biology	D32200	160											

@@ -2,9 +2,9 @@ delete from controlledvocabularyvalue where datasetfieldtype_id=20;
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('101', 'dans-model:recursive-item-v1', 'Content Model of Recursive Items', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('102', 'easy-collection:1', 'Oral History', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('103', 'easy-collection:2', 'World War II', 20);
-insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('104', 'easy-collection:3', 'Getuigen Verhalen', 20);
+insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('104', 'easy-collection:3', 'World War II - Getuigen Verhalen', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('105', 'easy-collection:4', 'Carare', 20);
-insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('106', 'easy-collection:5', 'Common Language Resources and Technology Infrastructure', 20);
+insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('106', 'easy-collection:5', 'CLARIN', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('107', 'easy-collection:6', 'Social Sciences (Dutch)', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('108', 'easy-collection:7', 'Social Sciences (English)', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('110', 'easy-data:oai-driverset1', 'OAI set: Open Access DRIVERset', 20);
@@ -87,7 +87,7 @@ insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datas
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('187', 'easy-discipline:169', 'Allergology', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('188', 'easy-discipline:17', 'Germanic language and literature studies', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('189', 'easy-discipline:170', 'Traumatology', 20);
-insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('190', 'easy-discipline:171', 'Organs and organ systems ', 20);
+insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('190', 'easy-discipline:171', 'Organs and organ systems', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('191', 'easy-discipline:172', 'Dermatology, venereology, rheumatology, orthopaedics', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('192', 'easy-discipline:173', 'Dermatology', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('193', 'easy-discipline:174', 'Venereology', 20);
@@ -119,7 +119,7 @@ insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datas
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('219', 'easy-discipline:198', 'Pediatrics', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('220', 'easy-discipline:199', 'Geriatrics', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('221', 'easy-discipline:2', 'Archaeology', 20);
-insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('222', 'easy-discipline:20', 'Paleography, bibliology, bibliography,  library science', 20);
+insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('222', 'easy-discipline:20', 'Paleography, bibliology, bibliography, library science', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('223', 'easy-discipline:200', 'Social medicine', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('224', 'easy-discipline:201', 'Primary care (including General practice)', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('225', 'easy-discipline:202', 'Occupational medicine', 20);
@@ -149,7 +149,7 @@ insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datas
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('249', 'easy-discipline:224', 'Nanotechnology', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('250', 'easy-discipline:225', 'Greenhouse gas mitigation', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('251', 'easy-discipline:226', 'Biobased economy', 20);
-insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('252', 'easy-discipline:23', 'Law and public administration ', 20);
+insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('252', 'easy-discipline:23', 'Law and public administration', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('253', 'easy-discipline:24', 'Economics and Business Administration', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('254', 'easy-discipline:26', 'Political and administrative sciences', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('255', 'easy-discipline:27', 'Political science', 20);
@@ -182,7 +182,7 @@ insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datas
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('282', 'easy-discipline:51', 'Sociology', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('283', 'easy-discipline:52', 'Urban and rural planning', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('284', 'easy-discipline:53', 'Gender studies', 20);
-insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('285', 'easy-discipline:54', 'Life sciences, medicine and health care ', 20);
+insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('285', 'easy-discipline:54', 'Life sciences, medicine and health care', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('286', 'easy-discipline:55', 'Health sciences', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('287', 'easy-discipline:56', 'Geodesy, physical geography', 20);
 insert into controlledvocabularyvalue (displayorder, identifier, strvalue, datasetfieldtype_id) values ('288', 'easy-discipline:57', 'Science and technology', 20);
