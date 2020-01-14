@@ -24,7 +24,8 @@
 	easy-pno-role	Related person	RelatedPerson	7											
 	easy-pno-role	Research group	ResearchGroup	8											
 	easy-pno-role	Researcher	Researcher	9											
-	easy-pno-role	Sponsor	Sponsor	10											
+	easy-pno-role	Sponsor	Sponsor	10
+	easy-pno-role	Data Collector	Data Collector	11
 	easy-collection	Carare	Carare	0
 	easy-collection	CLARIN	CLARIN	1
 	easy-collection	Oral History	OralHistory	2
