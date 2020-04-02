@@ -1,0 +1,29 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: dts
+  namespace: default
+  labels:
+    app: dts
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dts
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: dts
+    spec:
+      containers:
+        - name: dts
+          image: ekoindarto/dts:latest
+#          imagePullPolicy: Never
+          ports:
+            - containerPort: 8888
+          env:
+            - name: DTS_PORT  # Otherwise, this is wrongfully set by K8s.
+              value: "8888"
+

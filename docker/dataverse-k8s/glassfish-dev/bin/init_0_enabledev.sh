@@ -17,7 +17,7 @@ JDWP_PORT=${JDWP_PORT:-9009}
 # 1. if any options need to be set, start the server...
 if [ "x${ENABLE_JMX}" = "x1" ] ||  [ "x${ENABLE_JDWP}" = "x1" ] || [ "x${ENABLE_JREBEL}" = "x1" ]; then
   echo "Starting application server..."
-  asadmin start-domain
+  asadmin start-domain --debug
 fi
 
 # 2. Enable JMX (metrics + performance)

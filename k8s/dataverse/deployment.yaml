@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: dataverse
-          image: iqss/dataverse-k8s
+          image: ekoindarto/dataverse-extra
           resources:
             requests:
               memory: "2Gi"

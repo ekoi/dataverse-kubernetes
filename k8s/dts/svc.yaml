@@ -1,0 +1,17 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: dts
+  namespace: default
+  labels:
+    app: dts
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8888
+      name: dts
+      targetPort: 8888
+      protocol: TCP
+  selector:
+    app: dts

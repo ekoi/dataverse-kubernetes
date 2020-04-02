@@ -1,0 +1,5 @@
+ALLOWED_EXTENSIONS = {'xml'}
+TEMPORARY_DIRECTORY = '/usr/src/temp'
+DATAVERSE_BASE_URL='http://dataverse:8080'
+DDI_CONVERTER_TOOL_LOG_FILE='/usr/src/temp/dct.log'
+DDI_CONVERTER_TOOL_DEBUG=True

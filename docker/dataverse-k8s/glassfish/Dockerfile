@@ -32,7 +32,7 @@ ENV HOME_DIR=/opt/dataverse\
 ENV PATH="${PATH}:${GLASSFISH_DIR}/bin"
 
 # Install prerequisites
-RUN yum install -y java-1.8.0-openjdk-headless epel-release unzip curl wget && \
+RUN yum install -y java-1.8.0-openjdk-headless epel-release unzip curl git maven less mlocate telnet wget && \
     yum install -y postgresql jq ImageMagick && \
     yum clean all
 
@@ -87,7 +87,7 @@ RUN rm -rf ${DOMAIN_DIR}/docroot && \
 # Tune basic settings
 # 1) Set to use Server VM
 # 2) Remove memory settings no longer needed since 8u191 (UseContainerSupport=true!)
-RUN ${GLASSFISH_DIR}/bin/asadmin start-domain && \
+RUN ${GLASSFISH_DIR}/bin/asadmin start-domain --debug && \
     ${GLASSFISH_DIR}/bin/asadmin delete-jvm-options "-client" && \
     for MEMORY_JVM_OPTION in $(${GLASSFISH_DIR}/bin/asadmin list-jvm-options | grep "Xm[sx]"); do\
         ${GLASSFISH_DIR}/bin/asadmin delete-jvm-options $MEMORY_JVM_OPTION;\
@@ -114,10 +114,25 @@ RUN wget --no-verbose -O dvinstall.zip ${DATAVERSE_PKG} && \
     rm dvinstall.zip && \
     find . -iname "custom*.tsv" -delete
 
+RUN git clone https://github.com/ekoi/dataverse /tmp/v4.19-sshoc-datatags && \
+cd /tmp/v4.19-sshoc-datatags; git fetch; git pull origin v4.19-sshoc-datatags; mvn install -DskipTests && \
+rm ${HOME_DIR}/dvinstall/dataverse.war && \
+mv /tmp/v4.19-sshoc-datatags/target/dataverse-4.19.war ${HOME_DIR}/dvinstall/dataverse.war
+
 # Copy across docker scripts
-COPY --chown=glassfish:glassfish docker/dataverse-k8s/bin/* docker/dataverse-k8s/glassfish/bin/* ${SCRIPT_DIR}/
-RUN mkdir -p ${SCRIPT_DIR}/init.d && \
-    chmod +x ${SCRIPT_DIR}/*
+RUN mkdir -p ${SCRIPT_DIR}/api && echo "supersecret" > ${SCRIPT_DIR}/api/key
+#COPY --chown=glassfish:glassfish ./bin/bootstrap-job.sh ${SCRIPT_DIR}/init.d/bootstrap-job.sh
+#COPY --chown=glassfish:glassfish ./bin/config-job.sh ${SCRIPT_DIR}/init.d/config-job.sh
+#COPY --chown=glassfish:glassfish ./bin/metadata-update.sh ${SCRIPT_DIR}/init.d/metadata-update.sh
+COPY --chown=glassfish:glassfish ./bin/bootstrap-job.sh ${SCRIPT_DIR}/bootstrap-job.sh
+COPY --chown=glassfish:glassfish ./bin/config-job.sh ${SCRIPT_DIR}/config-job.sh
+COPY --chown=glassfish:glassfish ./bin/metadata-update.sh ${SCRIPT_DIR}/metadata-update.sh
+COPY --chown=glassfish:glassfish ./bin/default.config ${SCRIPT_DIR}/default.config
+COPY --chown=glassfish:glassfish ./bin/init_1_conf_glassfish.sh ${SCRIPT_DIR}/init_1_conf_glassfish.sh
+COPY --chown=glassfish:glassfish ./bin/entrypoint.sh ${SCRIPT_DIR}/entrypoint.sh
+
+RUN mkdir -p ${SCRIPT_DIR}/init.d && chmod +x ${SCRIPT_DIR}/*
+
 
 ENTRYPOINT ["/tini", "--"]
 CMD ["scripts/entrypoint.sh"]

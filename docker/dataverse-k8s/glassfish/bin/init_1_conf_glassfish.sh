@@ -15,7 +15,7 @@ set -e
 . ${SCRIPT_DIR}/default.config
 
 # 0. Start the domain
-asadmin start-domain
+asadmin start-domain --debug
 
 # 1. Password aliases from secrets
 for alias in rserve doi db
@@ -46,7 +46,7 @@ fi
 
 # JMS
 echo "Creating JMS resources."
-asadmin delete-connector-connection-pool --cascade=true jms/__defaultConnectionFactory-Connection-Pool
+#asadmin delete-connector-connection-pool --cascade=true jms/__defaultConnectionFactory-Connection-Pool
 asadmin create-connector-connection-pool \
           --steadypoolsize 1 \
           --maxpoolsize 250 \
