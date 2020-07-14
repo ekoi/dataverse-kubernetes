@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: solr
-          image: iqss/solr-k8s
+          image: ekoindarto/solr:latest
           resources:
             requests:
               memory: "2Gi"
@@ -58,7 +58,7 @@ spec:
               path: /solr/collection1/admin/ping
               port: index
         - name: schema-sidecar
-          image: iqss/solr-k8s
+          image: ekoindarto/solr:latest
           command: ["/tini", "--", "/scripts/schema/sidecar.sh"]
           ports:
             - name: webhook
@@ -81,7 +81,7 @@ spec:
             - name: data
               mountPath: /data
         - name: schema-init
-          image: iqss/solr-k8s
+          image: ekoindarto/solr:latest
           command: ["/scripts/schema/init.sh"]
           volumeMounts:
             - name: schema

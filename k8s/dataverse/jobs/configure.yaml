@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: configure
-          image: iqss/dataverse-k8s
+          image: ekoindarto/dataverse-payara:latest
           command: ["scripts/config-job.sh"]
           envFrom:
             - configMapRef:

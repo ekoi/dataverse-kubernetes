@@ -8,5 +8,4 @@ resources:
   - svc.yaml
 
 images:
-  - name: iqss/dataverse-k8s
-    newTag: "4.19"
+  - name: ekoindarto/dataverse-payara:latest
