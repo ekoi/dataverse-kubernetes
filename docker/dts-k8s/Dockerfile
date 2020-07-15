@@ -1,7 +1,7 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 WORKDIR /usr/src
-ARG APP_BASE_DIR=/usr/local/bridge
+ARG APP_BASE_DIR=/usr/local/dts
 ARG APP_PROP
 ARG APP_LIB
 ARG JAR_FILE

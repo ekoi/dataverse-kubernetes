@@ -18,16 +18,16 @@ set -e
 asadmin start-domain --debug
 
 # 1. Password aliases from secrets
-for alias in rserve doi db
-do
-  if [ -f ${SECRETS_DIR}/$alias/password ]; then
-    cat ${SECRETS_DIR}/$alias/password | sed -e "s#^#AS_ADMIN_ALIASPASSWORD=#" > /tmp/$alias
-    asadmin create-password-alias --passwordfile /tmp/$alias ${alias}_password_alias
-    rm /tmp/$alias
-  else
-    echo "WARNING: Could not find 'password' secret for ${alias} in ${SECRETS_DIR}. Check your Kubernetes Secrets and their mounting!"
-  fi
-done
+#for alias in rserve doi db
+#do
+#  if [ -f ${SECRETS_DIR}/$alias/password ]; then
+#    cat ${SECRETS_DIR}/$alias/password | sed -e "s#^#AS_ADMIN_ALIASPASSWORD=#" > /tmp/$alias
+#    asadmin create-password-alias --passwordfile /tmp/$alias ${alias}_password_alias
+#    rm /tmp/$alias
+#  else
+#    echo "WARNING: Could not find 'password' secret for ${alias} in ${SECRETS_DIR}. Check your Kubernetes Secrets and their mounting!"
+#  fi
+#done
 
 # 1b. Create AWS access credentials when storage driver is set to s3
 #     See IQSS/dataverse-kubernetes#28 for details of this workaround.
@@ -73,7 +73,8 @@ asadmin --user admin --passwordfile /tmp/pwd.txt create-jdbc-connection-pool \
           --datasourceclassname org.postgresql.ds.PGPoolingDataSource \
           --property create=true:User=${POSTGRES_USER}:PortNumber=${POSTGRES_PORT}:databaseName=${POSTGRES_DATABASE}:ServerName=${POSTGRES_SERVER} \
           dvnDbPool
-asadmin --user admin --passwordfile /tmp/pwd.txt set resources.jdbc-connection-pool.dvnDbPool.property.password='${ALIAS=db_password_alias}'
+#asadmin --user admin --passwordfile /tmp/pwd.txt set resources.jdbc-connection-pool.dvnDbPool.property.password='${ALIAS=db_password_alias}'
+asadmin --user admin --passwordfile /tmp/pwd.txt set resources.jdbc-connection-pool.dvnDbPool.property.password='changeme'
 asadmin --user admin --passwordfile /tmp/pwd.txt create-jdbc-resource --connectionpoolid dvnDbPool jdbc/VDCNetDS
 
 # JavaMail

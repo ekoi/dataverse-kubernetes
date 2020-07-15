@@ -1,0 +1,22 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: sword
+  namespace: default
+  labels:
+    app: sword
+#    app.kubernetes.io/name: sword-service
+#    app.kubernetes.io/version: "1.0"
+#    app.kubernetes.io/component: service
+#    app.kubernetes.io/part-of: dataverse
+#    app.kubernetes.io/managed-by: kubectl
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8089
+      name: sword
+      targetPort: 8089
+      protocol: TCP
+  selector:
+    app: sword

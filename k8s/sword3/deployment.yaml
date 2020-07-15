@@ -1,0 +1,34 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: sword
+  namespace: default
+  labels:
+    app: sword
+#    app.kubernetes.io/name: sword
+#    app.kubernetes.io/version: "4.15.1"
+#    app.kubernetes.io/component: sword
+#    app.kubernetes.io/part-of: dataverse
+#    app.kubernetes.io/managed-by: kubectl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sword
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: sword
+    spec:
+      containers:
+        - name: sword
+          image: ekoindarto/sword3-server-prototype:latest
+#          imagePullPolicy: Never
+          ports:
+            - containerPort: 8089
+          env:
+            - name: SWORD_PORT  # Otherwise, this is wrongfully set by K8s.
+              value: "8089"
+
