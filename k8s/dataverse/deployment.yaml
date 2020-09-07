@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: dataverse
-          image: iqss/dataverse-k8s
+          image: ekoindarto/dataverse-cvm:5.0
           resources:
             requests:
               memory: "2Gi"
@@ -38,6 +38,14 @@ spec:
             - configMapRef:
                 name: dataverse
           env:
+            - name: CVM_SERVER_NAME
+              value: CESSDA
+            - name: CVM_SERVER_URL
+              value: https://cvm.dataverse.tk
+            - name: WAR_FILE
+              value: https://github.com/IQSS/dataverse-docker/releases/download/5.0.1-cvm/dataverse-5_0_cvm.war
+            - name: CVM_TSV_SOURCE
+              value: https://raw.githubusercontent.com/ekoi/speeltuin/master/resources/CMM_Custom_MetadataBlock.tsv
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
